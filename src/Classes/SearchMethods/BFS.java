@@ -46,7 +46,7 @@ public class BFS extends PuzzleSearch {
      * Find a solution from the given node, using the given queue, and return the solution if found.
      *
      * @param node the node to search from
-     * @param queue thq queue to use when searching. The queue's priority will determine the order of which nodes are evaluated first.
+     * @param queue the queue to use when searching. The queue's priority will determine the order of which nodes are evaluated first.
      *
      * @return the solution node if found; otherwise null
      * */
