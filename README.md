@@ -2,7 +2,13 @@
 
 This program takes a sliding puzzle board and returns 1 or more solutions to it.
 
-The program allows any or all of 6 informed and uninformed search methods to be used, namely: Best-first, A*, BFS, DFS, DDFS, or IDDFS.
+The program allows any or all of 6 informed and uninformed search methods to be used, namely:
+[Best-first](https://github.com/avrohom-schneierson/sliding-puzzle-solver/blob/d9bb56c91acf60e0fe4e4361cf0b3ef0ea0c7c79/src/Classes/SearchMethods/BestFirst.java),
+[A*](https://github.com/avrohom-schneierson/sliding-puzzle-solver/blob/d9bb56c91acf60e0fe4e4361cf0b3ef0ea0c7c79/src/Classes/SearchMethods/AStar.java),
+[BFS](https://github.com/avrohom-schneierson/sliding-puzzle-solver/blob/d9bb56c91acf60e0fe4e4361cf0b3ef0ea0c7c79/src/Classes/SearchMethods/BFS.java),
+[DFS](https://github.com/avrohom-schneierson/sliding-puzzle-solver/blob/d9bb56c91acf60e0fe4e4361cf0b3ef0ea0c7c79/src/Classes/SearchMethods/DFS.java),
+[DDFS](https://github.com/avrohom-schneierson/sliding-puzzle-solver/blob/d9bb56c91acf60e0fe4e4361cf0b3ef0ea0c7c79/src/Classes/SearchMethods/DDFS.java),
+or [IDDFS](https://github.com/avrohom-schneierson/sliding-puzzle-solver/blob/d9bb56c91acf60e0fe4e4361cf0b3ef0ea0c7c79/src/Classes/SearchMethods/IDDFS.java).
 
 The program can accept boards of any size, however, due to complexity constraints bigger boards may run out of memory or take significant time to solve.
 
