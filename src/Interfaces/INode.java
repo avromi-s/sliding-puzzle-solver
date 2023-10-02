@@ -26,7 +26,7 @@ public interface INode {
     /**
      * @return the piece moved to get to this node
      * */
-    String getPieceMoved();
+    String getMovedPiece();
 
     boolean isSolution();
 

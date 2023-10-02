@@ -1,8 +1,10 @@
 // Avromi Schneierson - 6.4.2023
+
 import Classes.PuzzleSearchResult;
 import Classes.SlidingPuzzleBoard;
 import Classes.PuzzleSearch;
 import Classes.SearchMethods.*;
+
 import java.util.*;
 
 /**
@@ -11,7 +13,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the board pieces in order separated by dashes (put a space \" \" for the blank piece): ");
+        System.out.print("Enter the board pieces in order separated by dashes in order from top-left to bottom-right (put a space \" \" for the blank piece): ");
         String boardInput = scanner.nextLine();
         // Replace the space character with the number for the empty piece (the number of pieces on the board).
         String boardStr = boardInput.replaceFirst(" ", String.valueOf(boardInput.split("-").length));
@@ -43,7 +45,6 @@ public class Main {
             System.out.println("\t" + searchType + ":\n\t\t" + (solution.solutionWasFound() ? solution.getFullSolutionPath() : "no solution found"));
             long runTime = System.currentTimeMillis() - startTime;
             System.out.println("\n" + searchType + " search took " + runTime + "ms to run.\n");
-
             System.out.println("Solution:\n\t" + solution.getCondensedSolutionPath() + "\n");
 
             runTimes.put(searchType.toString(), runTime);

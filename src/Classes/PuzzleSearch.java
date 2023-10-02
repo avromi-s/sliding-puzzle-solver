@@ -3,7 +3,7 @@ package Classes;
 import Interfaces.INode;
 
 /**
- * Abstracts a puzzle search type, which all must offer a search method.
+ * Abstracts a puzzle search type, which must offer a search method.
  * */
 public abstract class PuzzleSearch {
 

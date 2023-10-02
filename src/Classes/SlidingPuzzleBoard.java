@@ -1,7 +1,7 @@
-package Classes;// Avromi Schneierson - 6.4.2023
+// Avromi Schneierson - 6.4.2023
+package Classes;
 
 import Interfaces.INode;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +51,12 @@ public class SlidingPuzzleBoard implements INode {
     /**
      * The piece the parent moved to get to this board
      */
-    private final int pieceMoved;
+    private final int movedPiece;
+
+    /**
+     * The position of the piece moved in the board. The first number is the vertical position, second is horizontal.
+     */
+    private int[] movedPieceIndices = new int[]{-1, -1};
 
     /**
      * Construct a new board.
@@ -59,9 +64,9 @@ public class SlidingPuzzleBoard implements INode {
      * @param puzzleId   the string representation of the board
      * @param parent     the board that led to this board
      * @param level      the level that this board was encountered at
-     * @param pieceMoved the piece moved to get to this board
+     * @param movedPiece the piece moved to get to this board
      */
-    public SlidingPuzzleBoard(String puzzleId, SlidingPuzzleBoard parent, int level, int pieceMoved) {
+    public SlidingPuzzleBoard(String puzzleId, SlidingPuzzleBoard parent, int level, int movedPiece) {
         // all fields based on BOARD_SIZE must be set BEFORE setPiecePositions() is called since that function uses those items.
         this.BOARD_SIZE = (int) Math.sqrt(puzzleId.split("-").length);
         this.board = new int[BOARD_SIZE][BOARD_SIZE];
@@ -69,7 +74,7 @@ public class SlidingPuzzleBoard implements INode {
         this.puzzleId = puzzleId;
         this.parent = parent;
         this.level = level;
-        this.pieceMoved = pieceMoved;
+        this.movedPiece = movedPiece;
 
         setPiecePositions(puzzleId);
     }
@@ -83,77 +88,15 @@ public class SlidingPuzzleBoard implements INode {
     private void setPiecePositions(String numbersInOrder) {
         String[] pieces = numbersInOrder.split("-");
         for (int i = 0; i < pieces.length; i++) {
+            // Save the position of the blank or moved pieces for future use.
             if (pieces[i].equals(String.valueOf(emptyPieceNumber))) {
-                // Save the position of the blank piece for future use.
                 emptyPieceIndices = new int[]{i / BOARD_SIZE, i % BOARD_SIZE};
+            } else if (pieces[i].equals(String.valueOf(movedPiece))) {
+                movedPieceIndices = new int[]{i / BOARD_SIZE, i % BOARD_SIZE};
             }
             board[i / BOARD_SIZE][i % BOARD_SIZE] = Integer.parseInt(pieces[i]);
         }
     }
-
-    /**
-     * Calculate and return the manhattan distance of a given piece, which is its distance from where it should be if
-     * the board were fully solved.
-     * E.g., for a board where everything is solved but 1 is switched with 2's position, 1 and 2 will each have a
-     * manhattanDistance of 1 and the total manhattan distance of the board would be 2.
-     *
-     * @param verticalIndex   the row index, starting from the top, of the piece to process. 0 indexed.
-     * @param horizontalIndex the column index, starting from the left, of the piece to process. 0 indexed.
-     * @return The 'manhattanDistance' of a piece.
-     */
-    public int manhattanDistance(int verticalIndex, int horizontalIndex) {
-        int number = board[verticalIndex][horizontalIndex];
-        // Remove 1 because we are working with 0-indexed arrays, whereas the numbers start from 1
-        number--;
-        int correctVerticalIndex = number / BOARD_SIZE;
-        int correctHorizontalIndex = number % BOARD_SIZE;
-
-        // Get the vertical and horizontal distance for the piece from its desired location. Get the positive distance if
-        // its distance is negative because it is ahead of where it should be.
-        int distanceVertical = (verticalIndex - correctVerticalIndex) < 0 ? -(verticalIndex - correctVerticalIndex) :
-                (verticalIndex - correctVerticalIndex);
-        int distanceHorizontal = (horizontalIndex - correctHorizontalIndex) < 0 ? -(horizontalIndex - correctHorizontalIndex) :
-                (horizontalIndex - correctHorizontalIndex);
-        return distanceVertical + distanceHorizontal;
-    }
-
-    @Override
-    public String toString() {
-        final int NUM_CHARS_BETWEEN_PIECES = 3;
-        final int NUM_CHARS_PER_PIECE = String.valueOf(emptyPieceNumber).length(); // The max size of any piece. Smaller pieces will be padded to keep everything the same size.
-        final int NUM_CHARS_PER_ROW = (NUM_CHARS_PER_PIECE + NUM_CHARS_BETWEEN_PIECES) * BOARD_SIZE + 1;
-        StringBuilder sb = new StringBuilder();
-        sb.append("-".repeat(NUM_CHARS_PER_ROW)).append("\n");
-        for (int[] row : board) {
-            for (int piece : row) {
-                // The blank piece is represented by the last number internally, so convert it to a blank space for viewing.
-                String pieceStr = piece == BOARD_SIZE * BOARD_SIZE ? " " : String.valueOf(piece);
-                int numCharsPadding = NUM_CHARS_PER_PIECE - pieceStr.length();
-
-                // Add the padding with half on either side. Adding 1 for the minimum spacing.
-                // All pieces have a minimum of 1 space on either side and the "|" character for a total min of 3 characters.
-                int numCharsPaddingLeft = (numCharsPadding / 2);
-                int numCharsPaddingRight = numCharsPadding - numCharsPaddingLeft;  // any remaining padding
-                sb.append("|").append(" ".repeat(numCharsPaddingLeft + 1)).append(pieceStr).
-                        append(" ".repeat(numCharsPaddingRight + 1));
-            }
-            sb.append("|\n");
-            sb.append("-".repeat(NUM_CHARS_PER_ROW)).append("\n");
-        }
-        return sb.toString();
-    }
-
-    /**
-     * Boards are equal if they have the same hashcode, which is if all pieces are in the same order.
-     * */
-    @Override
-    public boolean equals(Object puzzle) {
-        if (puzzle.getClass() == SlidingPuzzleBoard.class) {
-            return puzzle.hashCode() == this.hashCode();
-        }
-        return false;
-    }
-
 
     /**
      * @return a list of the next board nodes. Meaning, it returns all possible boards that can result from
@@ -209,6 +152,71 @@ public class SlidingPuzzleBoard implements INode {
         return nodes;
     }
 
+    /**
+     * Calculate and return the manhattan distance of a given piece, which is its distance from where it should be if
+     * the board were fully solved.
+     * E.g., for a board where everything is solved but 1 is switched with 2's position, 1 and 2 will each have a
+     * manhattanDistance of 1 and the total manhattan distance of the board would be 2.
+     *
+     * @param verticalIndex   the row index, starting from the top, of the piece to process. 0 indexed.
+     * @param horizontalIndex the column index, starting from the left, of the piece to process. 0 indexed.
+     * @return The 'manhattanDistance' of a piece.
+     */
+    private int manhattanDistance(int verticalIndex, int horizontalIndex) {
+        int pieceNumber = board[verticalIndex][horizontalIndex];
+        // Remove 1 because we are working with 0-indexed arrays, whereas the piece numbers start from 1
+        pieceNumber--;
+        int correctVerticalIndex = pieceNumber / BOARD_SIZE;
+        int correctHorizontalIndex = pieceNumber % BOARD_SIZE;
+
+        // Get the vertical and horizontal distance for the piece from its desired location. Get the positive distance if
+        // its distance is negative because it is ahead of where it should be.
+        int distanceVertical = (verticalIndex - correctVerticalIndex) < 0 ? -(verticalIndex - correctVerticalIndex) :
+                (verticalIndex - correctVerticalIndex);
+        int distanceHorizontal = (horizontalIndex - correctHorizontalIndex) < 0 ? -(horizontalIndex - correctHorizontalIndex) :
+                (horizontalIndex - correctHorizontalIndex);
+        return distanceVertical + distanceHorizontal;
+    }
+
+    @Override
+    public String toString() {
+        final int NUM_CHARS_BETWEEN_PIECES = 3;
+        final int NUM_CHARS_PER_PIECE = String.valueOf(emptyPieceNumber).length(); // The max size of any piece. Smaller pieces will be padded to keep everything aligned.
+        final int NUM_CHARS_PER_ROW = (NUM_CHARS_PER_PIECE + NUM_CHARS_BETWEEN_PIECES) * BOARD_SIZE + 1;
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("-".repeat(NUM_CHARS_PER_ROW)).append("\n");
+        for (int[] row : board) {
+            for (int piece : row) {
+                // The blank piece is represented by the last number internally, so convert it to a blank space for viewing.
+                String pieceStr = piece == BOARD_SIZE * BOARD_SIZE ? " " : String.valueOf(piece);
+                int numCharsPadding = NUM_CHARS_PER_PIECE - pieceStr.length();
+
+                // Add the padding with half on either side. Adding 1 for the minimum spacing.
+                // All pieces have a minimum of 1 space on either side and the "|" character for a total min of 3 characters.
+                int numCharsPaddingLeft = (numCharsPadding / 2);
+                int numCharsPaddingRight = numCharsPadding - numCharsPaddingLeft;  // any remaining padding
+
+                sb.append("|").append(" ".repeat(numCharsPaddingLeft + 1)).append(pieceStr).
+                        append(" ".repeat(numCharsPaddingRight + 1));
+
+            }
+            sb.append("|\n");
+            sb.append("-".repeat(NUM_CHARS_PER_ROW)).append("\n");
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Boards are equal if they have the same hashcode, which is if all pieces are in the same order.
+     */
+    @Override
+    public boolean equals(Object puzzle) {
+        if (puzzle.getClass() == SlidingPuzzleBoard.class) {
+            return puzzle.hashCode() == this.hashCode();
+        }
+        return false;
+    }
 
     /**
      * @return the level that this board was encountered at.
@@ -269,7 +277,7 @@ public class SlidingPuzzleBoard implements INode {
 
     /**
      * @return the actual cost (number of moves) used to get to this node, which is the level here.
-     * */
+     */
     @Override
     public int getGValue() {
         return getLevel();
@@ -279,7 +287,7 @@ public class SlidingPuzzleBoard implements INode {
     /**
      * The hashcode is solely based on the layout of the pieces on the board, as boards are only considered unique by
      * the layout of their pieces so that search can ignore duplicate positions already evaluated.
-     * */
+     */
     @Override
     public int hashCode() {
         return puzzleId.hashCode();
@@ -287,9 +295,9 @@ public class SlidingPuzzleBoard implements INode {
 
     /**
      * @return the last piece moved to get to this board.
-     * */
-    public String getPieceMoved() {
-        return String.valueOf(pieceMoved);
+     */
+    public String getMovedPiece() {
+        return String.valueOf(movedPiece);
     }
 
 }

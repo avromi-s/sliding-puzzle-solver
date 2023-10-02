@@ -4,12 +4,10 @@ package Classes.SearchMethods;
 import Classes.PuzzleSearchResult;
 import Interfaces.INode;
 import Classes.PuzzleSearch;
-
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
-
 
 /**
  * Facilitates search with the A* informed search algorithm.
@@ -39,7 +37,7 @@ public class AStar extends PuzzleSearch {
 
     /**
      * Find a solution from the given node, using the given queue, and return the solution if found. The algorithm used
-     * for A* here, is the same as with BFS, except that the nodes are checked for a solution when removed from the queue
+     * for A* here is the same as with BFS except that the nodes are checked for a solution when removed from the queue
      * instead of when being put on.
      *
      * @param node the node to search from
