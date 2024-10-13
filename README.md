@@ -1,6 +1,6 @@
 # sliding-puzzle-solver
 
-This program takes a sliding puzzle board and returns 1 or more solutions to it.
+This program takes a [sliding puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle) board and returns 1 or more solutions to it.
 
 The program allows any or all of 6 informed and uninformed search methods to be used, namely:
 [Best-first](https://github.com/avrohom-schneierson/sliding-puzzle-solver/blob/d9bb56c91acf60e0fe4e4361cf0b3ef0ea0c7c79/src/Classes/SearchMethods/BestFirst.java),
