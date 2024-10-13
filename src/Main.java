@@ -13,7 +13,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the board pieces in order separated by dashes in order from top-left to bottom-right (put a space \" \" for the blank piece): ");
+        System.out.print("Enter the board pieces separated by dashes in order from top-left to bottom-right (put a space \" \" for the blank piece): ");
         String boardInput = scanner.nextLine();
         // Replace the space character with the number for the empty piece (the number of pieces on the board).
         String boardStr = boardInput.replaceFirst(" ", String.valueOf(boardInput.split("-").length));
