@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/include_controls_bar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/default_margin"
+    app:layout_constraintBottom_toTopOf="@+id/end_guideline"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/mid_guideline">
+
+    <LinearLayout
+        android:id="@+id/controls_bar"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/skip_to_first_button"
+            style="@style/BorderlessButtonsStyle"
+            android:contentDescription="@string/skip_to_beginning"
+            android:enabled="false"
+            app:icon="@android:drawable/ic_media_rew"
+            app:iconGravity="textStart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/previous_button"
+            style="@style/BorderlessButtonsStyle"
+            android:contentDescription="@string/previous"
+            android:enabled="false"
+            app:icon="@android:drawable/ic_media_previous"
+            app:iconGravity="textStart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/play_button"
+            style="@style/BorderlessButtonsStyle"
+            android:contentDescription="@string/play"
+            android:enabled="false"
+            app:icon="@android:drawable/ic_media_play"
+            app:iconGravity="textStart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_button"
+            style="@style/BorderlessButtonsStyle"
+            android:contentDescription="@string/next"
+            android:enabled="false"
+            app:icon="@android:drawable/ic_media_next"
+            app:iconGravity="textStart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/skip_to_last_button"
+            style="@style/BorderlessButtonsStyle"
+            android:contentDescription="@string/skip_to_end"
+            android:enabled="false"
+            app:icon="@android:drawable/ic_media_ff"
+            app:iconGravity="textStart" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

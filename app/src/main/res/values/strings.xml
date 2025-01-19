@@ -1,0 +1,53 @@
+<resources>
+    <!-- Actions / Titles -->
+    <string name="app_name">Sliding Puzzle Solver</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_about">About</string>
+    <string name="clear">Clear</string>
+    <string name="edit">Edit</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="solve_board">Solve Board</string>
+    <string name="about">About</string>
+
+    <string name="about_message">This app finds a solution for any sliding puzzle board using any of 6 available algorithms (see settings).
+        \n\nTo find a solution, enter in the numbers for a mixed-up board and click \'Solve Board\'.
+        You can then cycle through the solution steps using the button bar on the bottom.
+        \n\nCreated by AS on 12/24/2024.</string>
+
+    <!-- Puzzle controls bar buttons -->
+    <string name="previous">Previous</string>
+    <string name="play">Play</string>
+    <string name="next">Next</string>
+    <string name="skip_to_end">Skip to end</string>
+    <string name="skip_to_beginning">Skip to beginning</string>
+
+    <!-- Settings preferences -->
+    <string name="board_settings_header">Board settings</string>
+
+    <string name="algorithm_setting_title">Algorithm</string>
+    <string name="algorithm_setting_preference_key">algorithmSetting</string>
+    <string name="algorithm_setting_default">AStar</string>
+    <string name="algorithm_setting_summary">Algorithm to use to find a solution</string>
+
+    <string name="board_size_setting_title">Board size</string>
+    <string name="board_size_setting_key">boardSizeSetting</string>
+    <string name="board_size_setting_summary">The size of the board</string>
+    <string name="board_size_setting_default">3</string>
+
+    <!-- Main Activity preferences -->
+    <string name="board_solution_preference_key">boardSolution</string>
+    <string name="board_solution_viewing_index_preference_key">boardSolutionViewingIndex</string>
+
+    <!-- MainActivity bundle keys -->
+    <string name="is_in_edit_mode_bundle_key">isInEditMode</string>
+    <string name="solution_viewing_index_bundle_key">solutionViewingIndex</string>
+    <string name="numbers_entered_bundle_key">numbersEntered</string>
+
+    <!-- Runtime messages -->
+    <string name="board_cleared">Board cleared</string>
+    <string name="found_solution">Found a solution</string>
+    <string name="couldnt_find_solution_try_again">Couldn\'t find a solution - please try again</string>
+    <string name="error_loading_stored_solution_path">Error loading previous solution path</string>
+    <string name="error_finding_solution">Error while trying to find a solution</string>
+    <string name="error_finding_solution_check_input">Error while trying to find a solution. Please check that the numbers entered are valid.</string>
+</resources>

@@ -1,0 +1,33 @@
+<resources>
+    <string-array name="algorithm_user_options">
+        <item>A* (A-Star)</item>
+        <item>Best-first</item>
+        <item>BFS (breadth first search)</item>
+        <item>DFS (depth first search)</item>
+        <item>DDFS (depth-bounded depth first search)</item>
+        <item>IDDFS (iterative deepening depth first search)</item>
+    </string-array>
+
+    <string-array name="algorithm_class_names">
+        <item>AStar</item>
+        <item>BestFirst</item>
+        <item>BFS</item>
+        <item>DFS</item>
+        <item>DDFS</item>
+        <item>IDDFS</item>
+    </string-array>
+
+    <string-array name="board_size_user_options">
+        <item>2 x 2</item>
+        <item>3 x 3</item>
+        <item>4 x 4</item>
+        <item>5 x 5</item>
+    </string-array>
+
+    <string-array name="board_size_values">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>

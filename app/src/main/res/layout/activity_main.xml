@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activities.MainActivity">
+
+    <include
+        android:id="@+id/include_toolbar"
+        layout="@layout/main_include_toolbar" />
+
+    <include
+        android:id="@+id/include_content_main"
+        layout="@layout/main_include_content_main" />
+
+    <include
+        android:id="@+id/include_fab"
+        layout="@layout/main_include_fab" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

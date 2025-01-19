@@ -1,0 +1,21 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/board_settings_header">
+        <ListPreference
+            app:defaultValue="@string/algorithm_setting_default"
+            app:entries="@array/algorithm_user_options"
+            app:entryValues="@array/algorithm_class_names"
+            app:key="@string/algorithm_setting_preference_key"
+            app:summary="%s"
+            app:title="@string/algorithm_setting_title" />
+
+        <ListPreference
+            app:defaultValue="@string/board_size_setting_default"
+            app:entries="@array/board_size_user_options"
+            app:entryValues="@array/board_size_values"
+            app:key="@string/board_size_setting_key"
+            app:summary="%s"
+            app:title="@string/board_size_setting_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
