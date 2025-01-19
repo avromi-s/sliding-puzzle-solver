@@ -8,7 +8,7 @@ The app allows users to input any mixed-up board and find a solution using any o
 ## How to use
 Enter in the numbers for a mixed-up board and click 'Solve Board'. You can then cycle through the solution steps using the button bar on the bottom.
 
-Solve a board              |  Change board size or algorithm
+Solve a board              |  Change algorithm or board size
 :-------------------------:|:-------------------------:
 ![portrait](https://github.com/user-attachments/assets/944ed0c9-a62c-440e-9f48-6c252cfca56d) |  ![settings](https://github.com/user-attachments/assets/0b83bf9a-a64d-4c03-a25c-2438d37b9aea)
 
