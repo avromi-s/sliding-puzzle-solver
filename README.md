@@ -1,15 +1,19 @@
 # Sliding Puzzle Solver
-Sliding Puzzle Solver is an app that finds solutions for any [sliding puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle) board.
+Sliding Puzzle Solver is an app that finds solutions for any unsolved [sliding puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle).
 
-A sliding puzzle board is a game consisting of a grid of mixed-up numbers that need to be ordered sequentially by sliding them into the correct order.
+A sliding puzzle is a game consisting of a grid of mixed-up numbers that need to be ordered sequentially by sliding them into the correct order. For example:
+
+Unsolved                                                                                  |  Solved
+:----------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------:
+![image](https://github.com/user-attachments/assets/3e33bba3-4c38-45d7-ae78-b1f26ceedbfa) |  ![image](https://github.com/user-attachments/assets/29a9bdc1-316c-41a8-bc20-80b0e78119e8)
 
 The app allows users to input any mixed-up board and find a solution using any of 6 available algorithms, namely: __Best-first__, __A*__, __BFS__, __DFS__, __DDFS__, or __IDDFS__.
 
 ## How to use
-Enter in the numbers for a mixed-up board and click 'Solve Board'. You can then cycle through the solution steps using the button bar on the bottom.
+Enter in the numbers for a mixed-up board and click 'Solve Board'. Once a solution is found, you can cycle through the solution steps using the button bar on the bottom. The board size or algorithm can be changed in the app's settings.
 
-Solve a board              |  Change algorithm or board size
-:-------------------------:|:-------------------------:
+Solving a board                                                                              |  Changing algorithm or board size
+:-------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------:
 ![portrait](https://github.com/user-attachments/assets/944ed0c9-a62c-440e-9f48-6c252cfca56d) |  ![settings](https://github.com/user-attachments/assets/0b83bf9a-a64d-4c03-a25c-2438d37b9aea)
 
 
